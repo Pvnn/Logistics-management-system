@@ -2,7 +2,7 @@
   margin: 0px;
 }
 #main, #canvas{
-  border: 2px solid black;
+  border: 2px none black;
 }
 #canvas{
   width: 80%;
@@ -22,4 +22,7 @@
   margin: 3px;
   padding-left: 5px;
   margin-top: 10px;
+}
+.navbar{
+  margin-bottom: 10px;
 }

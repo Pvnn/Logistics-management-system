@@ -12,14 +12,14 @@
     <div id="canvas">
       <div id="form-body" style="height: fit-content; padding: 10px;">
         <h2 class="headings" style="padding: 0px 0px 2px 0px; margin: 0px;">Create Transaction</h2>
-        <form class="row g-3">
+        <form class="row g-3" action="/create_transac/{{user.id}}" method="post">
           <div class="col-md-12">
             <label for="inputTransactionName" class="form-label">Transaction Name</label>
-            <input type="text" class="form-control" id="inputTransactionName">
+            <input type="text" class="form-control" id="inputTransactionName" name="t_name">
           </div>
           <div class="col-md-12">
             <label for="inputTransactionType" class="form-label">Transaction Type</label>
-            <select id="inputTransactionType" class="form-select">
+            <select id="inputTransactionType" class="form-select" name="t_type">
               <option selected>Choose...</option>
               <option>Heavy Goods</option>
               <option>Liquid</option>
@@ -29,7 +29,7 @@
           </div>
           <div class="col-md-6">
             <label for="inputSource" class="form-label">Source</label>
-            <select id="inputSource" class="form-select">
+            <select id="inputSource" class="form-select" name="s_city">
               <option selected>Choose...</option>
               <option>Chennai</option>
               <option>Mumbai</option>
@@ -39,7 +39,7 @@
           </div>
           <div class="col-md-6">
             <label for="inputDestination" class="form-label">Destination</label>
-            <select id="inputDestination" class="form-select">
+            <select id="inputDestination" class="form-select" name="d_city">
               <option selected>Choose...</option>
               <option>Chennai</option>
               <option>Mumbai</option>
@@ -49,11 +49,11 @@
           </div>
           <div class="col-md-12">
             <label for="transactionDescription" class="form-label">Description</label>
-            <textarea class="form-control" id="transactionDescription" rows="3"></textarea>
+            <textarea class="form-control" id="transactionDescription" rows="3" name="description"></textarea>
           </div>
           
           <div class="col-12" style="text-align: end;">
-            <button type="submit" class="btn btn-primary">Create</button>
+            <input type="submit" class="btn btn-primary", value="Create">
           </div>
         </form>
       </div>

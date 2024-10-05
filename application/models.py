@@ -5,7 +5,7 @@ class User(db.Model):
   username = db.Column(db.String(), nullable = False, unique = True)
   password = db.Column(db.String(), nullable = False)
   type = db.Column(db.String(), default= 'general')
-  trans = db.relationship("Transaction", backref = "user")
+  trans = db.relationship("Transaction", backref = "creator")
 
 class Transaction(db.Model):
   id = db.Column(db.Integer(), primary_key = True)
