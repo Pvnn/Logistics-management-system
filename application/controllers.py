@@ -5,6 +5,10 @@ import datetime as dt
 
 sampleData = [{"u_name": "pvn", "pwd" : "12345"}]
 
+@app.route('/')
+def landing():
+  return redirect('/userlogin')
+
 @app.route('/userlogin', methods = ['GET', 'POST'])
 def user_login():
   if request.method == 'POST':
@@ -54,7 +58,6 @@ def admin_login():
 def user(user_id):
   user = User.query.get(user_id)
   transactions = user.trans
-  print(transactions)
   return render_template('user-dash.html', user = user, transactions = transactions)
 
 @app.route('/create_transac/<int:user_id>', methods= ['GET', 'POST'])
@@ -72,5 +75,17 @@ def transaction_create(user_id):
     return redirect(f"/user/{user_id}")
   return render_template("create-transaction.html", user = user)
   
-
- 
+@app.route('/review/<int:trans_id>', methods = ["GET", "POST"])
+def review(trans_id):
+  this_trans = Transaction.query.get(trans_id)
+  if request.method=="POST":
+    delivery_date = request.form.get("delivery_date")
+    amount = request.form.get("amount")
+    #x = dt.datetime.strptime('2024-10-16', "%Y-%m-%d")
+    this_trans.delivery_date = dt.datetime.strptime(delivery_date, "%Y-%m-%d").strftime('%d %b')
+    if amount:
+      this_trans.amount = int(amount)
+      this_trans.internal_status = "quoted"
+    db.session.commit()
+    return redirect('/admin')
+  return render_template("review-transaction.html", trans = this_trans)

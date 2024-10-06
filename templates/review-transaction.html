@@ -14,19 +14,23 @@
         <h2 class="headings" style="padding: 0px 0px 2px 0px; margin: 0px;">Review Transaction</h2>
         <br>
         <div style="text-align: center;">
-          <h5>Package X</h5>
-          <h5>Nagpur - Chennai</h5>
-          <h5>Date created : 07 Feb 2024</h5>
-          <h5 style="margin-bottom: 10px;">Type : Inflammable</h5>
+          <h5>{{trans.t_name}}</h5>
+          <h5>{{trans.s_city}} - {{trans.d_city}}</h5>
+          <h5>Date created : {{trans.t_date}}</h5>
+          <h5>Type : {{trans.t_type}}</h5>
+          <br>
         </div>
-        <form class="row g-3">
+        <form class="row g-3" action="/review/{{trans.id}}" method="post">
           <div class="col-md-12">
             <label for="inputDeliveryDate" class="form-label">Expected Delivery Date</label>
-            <input type="date" class="form-control" id="inputDeliveryDate">
+            <input type="date" class="form-control" id="inputDeliveryDate" name="delivery_date">
           </div>
           <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">Amount</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Amount (INR)">
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Amount (INR)" name="amount">
+          </div>
+          <div class="col-12" style="text-align: end;">
+            <input type="submit" class="btn btn-primary", value="Update">
           </div>
         </form>
       </div>

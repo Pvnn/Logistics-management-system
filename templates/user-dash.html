@@ -57,6 +57,7 @@
                 <th scope="col">Source</th>
                 <th scope="col">Destination</th>
                 <th scope="col">Date of Request</th>
+                <th scope="col">Delivery Date</th>
                 <th scope="col">Status</th>
                 <th scope="col">Payment</th>
               </tr>
@@ -69,8 +70,21 @@
                   <td>{{transaction.s_city}}</td>
                   <td>{{transaction.d_city}}</td>
                   <td>{{transaction.t_date}}</td>
-                  <td>{{transaction.internal_status}}</td>
-                  <td>to be notified</td>
+                  {% if transaction.internal_status == "requested" %}
+                    <td>to be notified</td>
+                    <td>{{transaction.internal_status}}</td>
+                    <td>to be notified</td>
+                  {% else %}
+                    {% if transaction.internal_status == "paid" %}
+                      <td>{{transaction.delivery_date}}</td>
+                      <td>Paid</td>
+                      <td>Success</td>
+                    {% else %}
+                      <td>{{transaction.delivery_date}}</td>
+                      <td>Pay {{transaction.amount}}</td>
+                      <td><button class="btn btn-success">Pay Now</button></td>
+                    {% endif %}
+                  {% endif %}
                 </tr>
               {% endfor %}
             </tbody>
